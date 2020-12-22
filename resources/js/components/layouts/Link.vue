@@ -1,7 +1,6 @@
 <template>
     <b-link
         v-if="go"
-        class="text-decoration-none"
         :class="hoverClass"
         @mouseover.native="hover = true"
         @mouseleave.native="hover = false"
@@ -12,7 +11,6 @@
     <router-link
         v-else-if="to"
         :to="to"
-        class="text-decoration-none"
         :class="hoverClass"
         @mouseover.native="hover = true"
         @mouseleave.native="hover = false"
@@ -21,7 +19,6 @@
     </router-link>
     <b-link
         v-else
-        class="text-decoration-none"
         :class="hoverClass"
         @mouseover.native="hover = true"
         @mouseleave.native="hover = false"
@@ -39,6 +36,10 @@
             variant: {
 		        type: String,
                 default: 'light',
+            },
+            dark: {
+		        type: Boolean,
+                default: false,
             }
         },
         data() {
@@ -50,7 +51,7 @@
             hoverClass() {
                 let clss = {};
                 clss[`text-${this.variant}`] = this.hover;
-                clss['text-secondary'] = !this.hover;
+                clss['text-secondary'] = this.dark && !this.hover;
                 return clss
             }
         }

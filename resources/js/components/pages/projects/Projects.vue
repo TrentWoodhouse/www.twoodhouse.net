@@ -1,6 +1,6 @@
 <template>
     <div class="p-3 h-100 overflow-auto">
-        <ListItem :title="project.title" :src="project.image" :description="project.description" :badge="badge" :to="{ name: 'home' }"/>
+        <ListItem v-for="project in projects" :title="project.title" :src="project.image" :description="project.description" :badge="getBadge(project)" :to="{ name: 'home' }"/>
     </div>
 </template>
 
@@ -9,17 +9,14 @@
     export default {
 		name: "Projects",
         components: {ListItem},
-        data() {
-		    return {
-		        project: {
-		            title: 'big bob\'s brain',
-                    description: 'Yeee haw pardner\'',
-                    src: 'https://photographicdictionary.com/sites/photographicdictionary.com/files/photos/h/hick.jpg',
-                },
-                badge: {
-                    text: 'new',
-                    variant: 'danger',
-                }
+        computed: {
+		    projects() {
+		        return this.$store.getters.projects;
+            },
+        },
+        methods: {
+		    getBadge(project) {
+                return null;
             }
         }
     }

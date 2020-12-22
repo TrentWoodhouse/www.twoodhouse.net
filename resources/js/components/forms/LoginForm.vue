@@ -34,8 +34,8 @@
             </div>
         </div>
 
-        <Link class="px-2" @click.native="onSubmit">Login</Link>
-        <Link class="px-2" @click.native="onCancel">Cancel</Link>
+        <Link class="px-2" @click.native="onSubmit" dark>Login</Link>
+        <Link class="px-2" @click.native="onCancel" dark>Cancel</Link>
     </b-form>
 </template>
 
@@ -58,17 +58,14 @@
         methods: {
             onSubmit() {
                 this.submitted = true;
-                if(!this.$v.invalid) {
-                    this.axios.get('/sanctum/csrf-cookie')
-                        .then(response => {
-                            this.axios.post('/login', this.form)
-                                .then(response => {
-                                    this.$router.push({ name: 'home' });
-                                })
-                                .catch(error => {
-                                    this.error = 'Login failed. PLease check your credentials.';
-                                });
-                        });
+                if(!this.$v.$invalid) {
+                    this.$store.dispatch('login', this.form)
+                    .then(response => {
+                        this.$router.push({ name: 'home' });
+                    })
+                    .catch(error => {
+                        this.error = 'You credentials didn\'t match. PLease try again.';
+                    })
                 }
             },
             onCancel() {

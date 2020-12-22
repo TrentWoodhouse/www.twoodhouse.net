@@ -15,8 +15,12 @@ class Project extends Model
         'updated_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'author',
+    ];
+
     public function getAuthorAttribute() {
-        return $this->user->fullName;
+        return $this->user->full_name;
     }
 
     public function user() {

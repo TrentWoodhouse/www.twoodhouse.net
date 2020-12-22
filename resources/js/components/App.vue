@@ -1,6 +1,7 @@
 <template>
-    <div id="app">
+    <div id="app" class="position-relative h-100 overflow-hidden">
         <SideImage/>
+        <Auth/>
         <div class="front p-3 h-100">
             <div class="d-flex flex-column h-100">
                 <div id="header">
@@ -17,7 +18,7 @@
                         <div :key="$route.name" class="position-absolute h-100 w-100">
                             <div class="d-flex h-100">
                                 <div class="flex-column">
-                                    <Link v-if="back" :go="-1">
+                                    <Link v-if="back" :go="-1" dark>
                                         <b-icon icon="chevron-left" font-scale="3" />
                                     </Link>
                                 </div>
@@ -40,17 +41,21 @@
 <script>
     import SideImage from "./layouts/SideImage";
     import Link from "./layouts/Link";
+    import Auth from "./layouts/Auth";
     export default {
         name: "App",
-        components: {Link, SideImage},
+        components: {Auth, Link, SideImage},
         computed: {
             title() {
                 return this.$route.meta.title;
             },
             back() {
                 return this.$route.name !== 'home';
-            }
+            },
         },
+        created() {
+            this.$store.dispatch('getProjects');
+        }
     }
 </script>
 
@@ -59,16 +64,11 @@
         background-color: #f8f9fa;
     }
 
-    #app {
-        position: relative;
-        height: 100%;
-        overflow: hidden;
-    }
-
     .front {
         position: relative;
         z-index: 10;
     }
+
     .content-enter {
         transform: translateX(-500px);
     }

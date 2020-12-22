@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="item of navItems" class="no-select">
-            <Link :to="item.route">
+            <Link :to="item.route" dark>
                 <h1 class="d-inline">
                     {{ item.name }}
                     <h5 class="d-inline align-middle">

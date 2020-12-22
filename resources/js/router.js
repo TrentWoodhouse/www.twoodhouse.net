@@ -7,6 +7,7 @@ import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
 import Projects from "./components/pages/projects/Projects";
 import Login from "./components/pages/auth/Login";
+import Project from "./components/pages/projects/Project";
 
 function grabImage(img) {
     let ret = new Image();
@@ -41,6 +42,11 @@ const routes = [
             title: 'My Projects',
             image: grabImage('projects.png'),
         }
+    },
+    {
+        path: '/project/:id',
+        name: 'project',
+        component: Project,
     },
     {
         path: '/contact',
