@@ -1,0 +1,39 @@
+// Typography
+$font-family: 'Fira Sans', 'Fira Sans Condensed', 'Oswald', 'Nunito', sans-serif;
+$font-family-sans-serif: 'Fira Sans', 'Fira Sans Condensed', 'Oswald', 'Nunito', sans-serif;
+$font-size-base: 1.1rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+$dark: #1a1a1d;
+$light: #f8f9fa;
+$t-dark: rgba(0, 0, 0, .5);
+$t-light: rgba(255, 255, 255, 0.15);
+
+$theme-colors: (
+    "dark": $dark,
+    "light": $light,
+);
+
+// Body
+$body-bg: #1a1a1d;
+$body-color: #f8f9fa;
+
+// Input
+$input-bg: $t-dark;
+$input-focus-bg: $t-dark;
+$input-color: $light;
+$input-focus-color: $light;
+
+
+
