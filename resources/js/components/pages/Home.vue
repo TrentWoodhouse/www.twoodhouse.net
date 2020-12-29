@@ -31,6 +31,15 @@
                 ]
             }
         },
+        created() {
+            if (!this.$store.getters.projects) {
+                this.$store.dispatch('getProjects')
+                    .then(response => {
+                        this.$store.commit('setImage', this.project.image);
+                        this.loaded = true;
+                    });
+            }
+        }
     }
 </script>
 

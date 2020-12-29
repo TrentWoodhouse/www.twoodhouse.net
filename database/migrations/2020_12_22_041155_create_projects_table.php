@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration
                 ->onDelete('cascade');
             $table->string('title');
             $table->text('description');
-            $table->longText('content');
+            $table->text('content');
             $table->string('image');
             $table->timestamps();
         });

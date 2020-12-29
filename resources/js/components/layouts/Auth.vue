@@ -1,7 +1,9 @@
 <template>
     <div v-if="auth" class="top-right p-3 text-right">
         <div>{{ auth.user.full_name }}</div>
-        <Link @click.native="logout">Logout</Link>
+        <small>
+            <Link @click.native="logout">Logout</Link>
+        </small>
     </div>
 </template>
 

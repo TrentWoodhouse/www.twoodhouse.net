@@ -36,10 +36,5 @@
 </script>
 
 <style scoped>
-    .card {
-        background-color: rgba(255, 255, 255, 0.15);
-        font-family: 'Fira Sans';
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
+
 </style>

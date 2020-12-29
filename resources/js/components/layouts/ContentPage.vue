@@ -1,14 +1,22 @@
 <template>
-    <div>
-        <div class="content-page p-3 h-100 overflow-auto">
+    <Content :navLinks="navLinks">
+        <div class="content-page h-100 p-3 overflow-auto">
             <slot></slot>
         </div>
-    </div>
+    </Content>
 </template>
 
 <script>
+    import Content from "./Content";
     export default {
 		name: "ContentPage",
+        components: {Content},
+        props: {
+		    navLinks: {
+		        type: Array,
+                default: [],
+            }
+        }
     }
 </script>
 

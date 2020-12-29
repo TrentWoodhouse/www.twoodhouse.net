@@ -18,7 +18,7 @@
 		name: "SideImage",
         computed: {
 		    src() {
-                return this.$route.meta.image.src;
+                return this.$store.getters.image;
             }
         }
 	}

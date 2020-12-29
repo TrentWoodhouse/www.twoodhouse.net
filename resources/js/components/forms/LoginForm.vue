@@ -64,7 +64,7 @@
                         this.$router.push({ name: 'home' });
                     })
                     .catch(error => {
-                        this.error = 'You credentials didn\'t match. PLease try again.';
+                        this.error = 'You credentials didn\'t match. Please try again.';
                     })
                 }
             },

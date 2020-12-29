@@ -10,11 +10,6 @@ class Project extends Model
         'first_name', 'last_name', 'email', 'password',
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
-
     protected $appends = [
         'author',
     ];

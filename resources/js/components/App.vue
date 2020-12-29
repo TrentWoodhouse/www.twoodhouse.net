@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="position-relative h-100 overflow-hidden">
+    <div v-if="loaded" id="app" class="position-relative h-100 overflow-hidden">
         <SideImage/>
         <Auth/>
         <div class="front p-3 h-100">
@@ -36,6 +36,11 @@
             </div>
         </div>
     </div>
+    <div v-else class="row align-items-center w-100 h-100">
+        <div class="col-12 text-center">
+            <b-spinner style="width: 3rem; height: 3rem;" type="grow" variant="light"/>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -45,16 +50,21 @@
     export default {
         name: "App",
         components: {Auth, Link, SideImage},
+        data() {
+            return {
+                loaded: false,
+            }
+        },
         computed: {
             title() {
-                return this.$route.meta.title;
+                return this.$store.getters.title;
             },
             back() {
                 return this.$route.name !== 'home';
             },
         },
         created() {
-            this.$store.dispatch('getProjects');
+            this.loaded = true;
         }
     }
 </script>

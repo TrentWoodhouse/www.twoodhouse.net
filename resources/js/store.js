@@ -8,11 +8,18 @@ Vue.use(VueAxios, axios);
 
 export const store = new Vuex.Store({
     state: {
+        title: '',
+        image: '',
         auth: localStorage.getItem('auth'),
-        user: null,
         projects: null,
     },
     getters: {
+        title(state) {
+            return state.title;
+        },
+        image(state) {
+            return state.image;
+        },
         auth(state) {
             return JSON.parse(state.auth);
         },
@@ -21,6 +28,12 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
+        setTitle(state, title) {
+            state.title = title;
+        },
+        setImage(state, image) {
+            state.image = image;
+        },
         setAuth(state, auth) {
             state.auth = JSON.stringify(auth);
             localStorage.setItem('auth', JSON.stringify(auth));
