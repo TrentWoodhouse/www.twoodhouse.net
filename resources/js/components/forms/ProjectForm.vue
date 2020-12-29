@@ -32,13 +32,10 @@
             </b-form-invalid-feedback>
         </b-form-group>
         <b-form-group>
-            <b-form-textarea
+            <vue-editor
                 id="content"
-                v-model.trim="$v.form.content.$model"
+                v-model="$v.form.content.$model"
                 placeholder="Write your content here..."
-                rows="6"
-                no-resize
-                required
             />
             <b-form-invalid-feedback :state="!submitted || $v.form.content.required">
                 This is required

@@ -30,3 +30,76 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
+
+.quillwrapper {
+    height: 450px;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.ql-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: $t-light;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: none !important;
+}
+
+.ql-toolbar {
+    background-color: $t-dark;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: none !important;
+    z-index: 100;
+}
+
+.ql-snow.ql-toolbar button:hover {
+    color: $light !important;
+}
+
+.ql-snow.ql-toolbar .ql-active {
+    color: $light !important;
+}
+
+.ql-editor {
+    height: 100%;
+    font-family: $font-family;
+}
+
+.ql-editor.ql-blank::before {
+    color: #aaa !important;
+}
+
+.ql-editor > h1 {
+    color: #fff;
+}
+
+.ql-editor > h2 {
+    color: #fff;
+}
+
+.ql-editor > h3 {
+    color: #fff;
+}
+
+.ql-editor > h4 {
+    color: #eee;
+}
+
+.ql-editor > h5 {
+    color: #eee;
+}
+
+.ql-editor > p {
+    color: #ccc;
+}
+
+.ql-editor > pre {
+    background-color: $t-dark !important;
+}

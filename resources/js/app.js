@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
+import VueEditor from "vue2-editor";
 import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 import {router} from './router';
 import {store} from './store';
 
 Vue.use(Vuelidate);
+Vue.use(VueEditor);
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 

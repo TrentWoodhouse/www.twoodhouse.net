@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <p>Create a new project.</p>
+    <div class="h-100 overflow-auto">
         <ProjectForm/>
     </div>
 </template>
