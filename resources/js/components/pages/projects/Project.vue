@@ -4,18 +4,13 @@
             <div v-if="loaded">
                 <div class="mb-2">
                     <h1>{{ project.title }}</h1>
-                    <div>
-                        <small>Last updated {{ format(project.updated_at) }}</small>
-                    </div>
+                    <div><small>Started {{ format(project.created_at) }}</small></div>
+                    <div><small>Last updated {{ format(project.updated_at) }}</small></div>
                 </div>
                 {{ project.content }}
             </div>
-            <div v-else>
-
-            </div>
         </ContentPage>
     </div>
-
 </template>
 
 <script>

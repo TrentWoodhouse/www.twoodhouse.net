@@ -55,7 +55,7 @@
             </b-form-invalid-feedback>
         </b-form-group>
         <Link class="px-2" @click.native="onSubmit" dark>Submit</Link>
-        <Link class="px-2" @click.native="onCancel" dark>Cancel</Link>
+        <Link class="px-2" @click.native="$emit('onCancel')" dark>Cancel</Link>
     </b-form>
 </template>
 
@@ -79,16 +79,9 @@
 		    onSubmit() {
 		        this.submitted = true;
 		        if(!this.$v.$invalid) {
-                    this.$bvToast.toast('Please wait one to two days for a reply', {
-                        title: 'Message Sent!',
-                        autoHideDelay: 5000,
-                    });
-                    this.$router.push({ name: 'home' });
+                    this.$emit('onSubmit', this.form);
                 }
             },
-            onCancel() {
-                this.$router.push({ name: 'home' });
-            }
         },
         validations: {
 		    form: {

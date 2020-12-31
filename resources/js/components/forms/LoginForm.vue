@@ -35,7 +35,7 @@
         </div>
 
         <Link class="px-2" @click.native="onSubmit" dark>Login</Link>
-        <Link class="px-2" @click.native="onCancel" dark>Cancel</Link>
+        <Link class="px-2" @click.native="$emit('onCancel')" dark>Cancel</Link>
     </b-form>
 </template>
 
@@ -59,18 +59,9 @@
             onSubmit() {
                 this.submitted = true;
                 if(!this.$v.$invalid) {
-                    this.$store.dispatch('login', this.form)
-                    .then(response => {
-                        this.$router.push({ name: 'home' });
-                    })
-                    .catch(error => {
-                        this.error = 'You credentials didn\'t match. Please try again.';
-                    })
+                    this.$emit('onSubmit', this.form);
                 }
             },
-            onCancel() {
-                this.$router.push({ name: 'home' });
-            }
         },
         validations: {
 		    form: {

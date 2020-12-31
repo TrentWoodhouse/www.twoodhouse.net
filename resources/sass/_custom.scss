@@ -103,3 +103,7 @@
 .ql-editor > pre {
     background-color: $t-dark !important;
 }
+
+.vuejs-clipper-fixed__wrap {
+    backdrop-filter: blur(10px);
+}

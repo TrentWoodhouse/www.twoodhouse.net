@@ -1,5 +1,32 @@
 <template>
     <b-form @submit="onSubmit">
+            <div class="row w-100">
+                <div class="col-lg-6">
+                    <b-form-group>
+                        <clipper-basic
+                            v-if="imageData"
+                            class="mb-3"
+                            :src="imageData"
+                            :ratio="1"
+                            :init-height="100"
+                            :init-width="100"
+                            :min-width="20"
+                            :height="100"
+                        />
+                        <b-form-file
+                            v-model="$v.form.image.$model"
+                            accept="image/*"
+                            placeholder="Upload image"
+                            drop-placeholder="Drop image"
+                            @input="onSelectFile"
+                        />
+                        <b-form-invalid-feedback :state="!submitted || $v.form.image.required">
+                            This is required
+                        </b-form-invalid-feedback>
+                    </b-form-group>
+                </div>
+            </div>
+
         <b-form-group>
             <b-form-input
                 id="title"
@@ -45,7 +72,7 @@
             </b-form-invalid-feedback>
         </b-form-group>
         <Link class="px-2" @click.native="onSubmit" dark>Submit</Link>
-        <Link class="px-2" @click.native="onCancel" dark>Cancel</Link>
+        <Link class="px-2" @click.native="$emit('onCancel')" dark>Cancel</Link>
     </b-form>
 </template>
 
@@ -66,6 +93,7 @@
                     content: '',
                     image: null,
                 },
+                imageData: null,
                 submitted: false,
             }
         },
@@ -82,12 +110,19 @@
             onSubmit() {
                 this.submitted = true;
                 if(!this.$v.$invalid) {
-                    this.$router.push({ name: 'projects' });
+                    this.$emit('onSubmit', this.form);
                 }
             },
-            onCancel() {
-                this.$router.push({ name: 'projects' });
-            },
+            onSelectFile() {
+                const reader = new FileReader;
+                if(this.form.image) {
+                    reader.readAsDataURL(this.form.image);
+                }
+
+                reader.onload = e => {
+                    this.imageData = e.target.result;
+                }
+            }
         },
         validations: {
             form: {
@@ -103,6 +138,9 @@
                     required,
                     maxLength: maxLength(65000),
                 },
+                image: {
+                    required,
+                }
             }
         }
 	}

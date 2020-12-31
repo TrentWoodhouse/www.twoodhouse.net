@@ -1,7 +1,7 @@
 <template>
     <div>
         <p>Please sign in.</p>
-        <LoginForm/>
+        <LoginForm @onSubmit="onSubmit" @onCancel="onCancel"/>
     </div>
 </template>
 
@@ -10,6 +10,20 @@
 	export default {
 		name: "Login",
         components: {LoginForm},
+        methods: {
+		    onSubmit(data) {
+                this.$store.dispatch('login', data)
+                    .then(response => {
+                        this.$router.push({ name: 'home' });
+                    })
+                    .catch(error => {
+                        this.error = 'You credentials didn\'t match. Please try again.';
+                    })
+            },
+            onCancel() {
+                this.$router.push({ name: 'home' });
+            }
+        }
 	}
 </script>
 
