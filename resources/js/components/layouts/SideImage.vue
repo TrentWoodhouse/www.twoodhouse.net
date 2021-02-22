@@ -16,11 +16,9 @@
 <script>
 	export default {
 		name: "SideImage",
-        computed: {
-		    src() {
-                return this.$store.getters.image;
-            }
-        }
+        props: {
+		    src: String,
+        },
 	}
 </script>
 

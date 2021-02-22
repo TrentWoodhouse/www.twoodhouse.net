@@ -6,34 +6,31 @@ import VueAxios from "vue-axios";
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
 
+axios.defaults.baseURL = '/api';
+
 export const store = new Vuex.Store({
     state: {
-        title: '',
-        image: '',
         auth: localStorage.getItem('auth'),
         projects: null,
     },
     getters: {
-        title(state) {
-            return state.title;
-        },
-        image(state) {
-            return state.image;
-        },
         auth(state) {
-            return JSON.parse(state.auth);
+            return JSON.parse(state.auth) || null;
         },
         projects(state) {
             return state.projects;
-        }
+        },
+        _config(state, getters) {
+            return (_headers) => ({
+                headers: {
+                    Authorization: `Bearer ${getters.auth?.token}`,
+                    Accept: 'application/json',
+                    ..._headers,
+                }
+            });
+        },
     },
     mutations: {
-        setTitle(state, title) {
-            state.title = title;
-        },
-        setImage(state, image) {
-            state.image = image;
-        },
         setAuth(state, auth) {
             state.auth = JSON.stringify(auth);
             localStorage.setItem('auth', JSON.stringify(auth));
@@ -48,7 +45,7 @@ export const store = new Vuex.Store({
     },
     actions: {
         login(context, data) {
-            return axios.post('/api/login', data)
+            return axios.post('/login', data)
             .then(response => {
                 context.commit('setAuth', response.data);
             });
@@ -57,11 +54,28 @@ export const store = new Vuex.Store({
             context.commit('clearAuth');
         },
         getProjects(context) {
-            return axios.get('/api/project')
+            return axios.get('/project')
             .then(response => {
                 context.commit('setProjects', response.data);
             });
         },
+        createProject(context, data) {
+            return axios.post('/project', data, context.getters._config())
+                .then(response => {
+                    context.dispatch('getProjects');
+                })
+                .catch(error => console.log(error.message));
+        },
+        updateProject(context, {id, data}) {
+            return axios.post(`/project/${id}`, data, context.getters._config())
+                .then(response => {
+                    console.log(response);
+                    context.dispatch('getProjects');
+                })
+                .catch(error => console.log(error.message));
+        },
+        imageUpload(context, data) {
+            return axios.post('/image-upload', data, context.getters._config({'Content-Type': 'multipart/form-data'}));
+        }
     }
-
 });

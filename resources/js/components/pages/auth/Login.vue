@@ -1,15 +1,20 @@
 <template>
-    <div>
+    <Page
+        title="Login"
+        :image="getImage('login.png')"
+        :back="{name: 'home'}"
+    >
         <p>Please sign in.</p>
         <LoginForm @onSubmit="onSubmit" @onCancel="onCancel"/>
-    </div>
+    </Page>
 </template>
 
 <script>
     import LoginForm from '../../forms/LoginForm';
+    import Page from "../../layouts/Page";
 	export default {
 		name: "Login",
-        components: {LoginForm},
+        components: {Page, LoginForm},
         methods: {
 		    onSubmit(data) {
                 this.$store.dispatch('login', data)

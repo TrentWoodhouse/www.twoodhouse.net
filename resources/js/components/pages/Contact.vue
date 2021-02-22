@@ -1,15 +1,19 @@
 <template>
-    <div>
+    <Page
+        title="Contact"
+        :image="getImage('contact.png')"
+        :back="{name:'home'}">
         <p>Leave your name and email and I'll get back to you as soon as I can.</p>
         <ContactForm @onSubmit="onSubmit" @onCancel="onCancel"/>
-    </div>
+    </Page>
 </template>
 
 <script>
 	import ContactForm from "../forms/ContactForm";
+    import Page from "../layouts/Page";
     export default {
 		name: "Contact",
-        components: {ContactForm},
+        components: {Page, ContactForm},
         methods: {
             onSubmit() {
                 this.$router.push({ name: 'home' });

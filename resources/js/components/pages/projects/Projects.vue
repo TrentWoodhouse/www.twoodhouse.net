@@ -1,63 +1,58 @@
 <template>
-    <Content :navLinks="auth && navLinks">
-        <div class="h-100 overflow-auto">
-            <div v-if="loaded">
-                <ListItem v-for="project in projects" :key="project.id" :title="project.title" :src="project.image" :description="project.description" :badge="getBadge(project)" :to="{ name: 'project', params: { id: project.id }}"/>
-            </div>
-        </div>
-    </Content>
+    <Page
+        title="Projects"
+        :image="getImage('projects.png')"
+        :actions="actions"
+        :back="{name: 'home'}"
+        scrollable
+    >
+        <ListGroup :items="items"/>
+    </Page>
+
 </template>
 
 <script>
-    import moment from 'moment';
-    import ListItem from "../../layouts/ListItem";
+    import ListItem from "../../layouts/list/ListItem";
     import Content from "../../layouts/Content";
+    import ListGroup from "../../layouts/list/ListGroup";
+    import Page from "../../layouts/Page";
+    import {projectMixin} from '../../../mixins'
+    import {store} from "../../../store";
     export default {
 		name: "Projects",
-        components: {ListItem, Content},
-        data() {
-		    return {
-		        loaded: false,
-                navLinks: [
-                    {
-                        text: 'New',
-                        to: { name: 'project-create' },
-                    },
-                ]
-            }
-        },
+        mixins: [projectMixin],
+        components: {Page, ListGroup, ListItem, Content},
         computed: {
+		    items() {
+		        return this.projects?.map(project => ({
+                    id: project.id,
+                    title: project.title,
+                    src: project.image,
+                    description: project.description,
+                    to: { name: 'project', params: { id: project.id }},
+                })) || [];
+            },
+            actions() {
+		        if(this.auth) {
+		            return [
+                        {
+                            text: 'New',
+                            to: { name: 'project-create' },
+                        },
+                    ]
+                }
+		        return [];
+            },
 		    projects() {
 		        return this.$store.getters.projects;
             },
             auth() {
 		        return this.$store.getters.auth;
+            },
+            loaded() {
+		        return !!this.projects;
             }
         },
-        created() {
-		    if(!this.projects) {
-		        this.$store.dispatch('getProjects')
-                .then(response => {
-                    this.loaded = true;
-                });
-            }
-		    else {
-		        this.loaded = true;
-            }
-        },
-        methods: {
-		    getBadge(project) {
-                let createdAt = moment(project.created_at);
-                let now = moment();
-                if(!now.isAfter(createdAt.add(7, 'days').startOf('day'))) {
-                    return {
-                        text: 'New',
-                        variant: 'danger',
-                    }
-                }
-                return null;
-            }
-        }
     }
 </script>
 

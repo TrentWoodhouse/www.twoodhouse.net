@@ -28,7 +28,7 @@
                         This is required
                     </b-form-invalid-feedback>
                 </b-form-group>
-                <b-form-invalid-feedback :state="!this.error">
+                <b-form-invalid-feedback :state="!error">
                     {{ error }}
                 </b-form-invalid-feedback>
             </div>

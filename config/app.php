@@ -52,7 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_ENV', 'production') === 'production'
+        ? env('APP_PROD_URL', 'http://localhost')
+        : env('APP_DEV_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
 

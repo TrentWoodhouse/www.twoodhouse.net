@@ -6,6 +6,7 @@ import VuejsClipper from 'vuejs-clipper/dist/vuejs-clipper.umd';
 import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 import {router} from './router';
 import {store} from './store';
+import {globalMixin} from './mixins';
 
 Vue.use(Vuelidate);
 Vue.use(VueEditor);
@@ -13,6 +14,8 @@ Vue.use(VueRx);
 Vue.use(VuejsClipper);
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
+
+Vue.mixin(globalMixin);
 
 import App from './components/App';
 const app = new Vue({

@@ -2,11 +2,11 @@
     <b-card no-body class="overflow-hidden mb-3">
         <b-row no-gutters>
             <b-col md="4">
-                <b-card-img :src="src"></b-card-img>
+                <b-card-img :src="src"/>
             </b-col>
             <b-col md="8">
                 <b-card-body>
-                    <b-card-title>
+                    <b-card-title title-tag="h2">
                         {{ title }}
                         <h5 class="d-inline align-middle">
                             <b-badge pill v-if="badge" :variant="badge.variant">
@@ -31,7 +31,7 @@
             src: String,
             badge: Object,
             to: [String, Object],
-        }
+        },
 	}
 </script>
 

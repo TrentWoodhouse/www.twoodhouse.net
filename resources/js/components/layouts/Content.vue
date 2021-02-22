@@ -1,28 +1,44 @@
 <template>
-    <div class="d-flex flex-column h-100">
-        <div v-if="navLinks" class="text-right">
-            <b-link v-for="navLink in navLinks" :key="navLink.key || navLink.text" :to="navLink.to" class="ml-1">
-                {{ navLink.text }}
-            </b-link>
-        </div>
-        <div class="flex-grow-1">
-            <slot/>
-        </div>
+    <div class="w-100 h-100 p-3 content-page overflow-auto">
+        <slot/>
     </div>
 </template>
 
 <script>
-	export default {
-		name: "Content",
-        props: {
-            navLinks: {
-                type: Array,
-                default: [],
-            }
-        },
-	}
+    export default {
+        name: "Content",
+    }
 </script>
 
 <style scoped>
+    h1 {
+        color: #fff;
+    }
 
+    h2 {
+        color: #fff;
+    }
+
+    h3 {
+        color: #fff;
+    }
+
+    h4 {
+        color: #eee;
+    }
+
+    h5 {
+        color: #eee;
+    }
+
+    p {
+        color: #ccc;
+    }
+
+    .content-page {
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
 </style>

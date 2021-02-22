@@ -14,7 +14,9 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        $project = Project::create($request->all());
+        $data = $request->all();
+        $data['user_id'] = $request->user()->id;
+        $project = Project::create($data);
         return response()->json($project, 201);
     }
 

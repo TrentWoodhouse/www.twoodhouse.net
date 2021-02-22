@@ -1,31 +1,29 @@
 <template>
     <b-form @submit="onSubmit">
-            <div class="row w-100">
-                <div class="col-lg-6">
-                    <b-form-group>
-                        <clipper-basic
-                            v-if="imageData"
-                            class="mb-3"
-                            :src="imageData"
-                            :ratio="1"
-                            :init-height="100"
-                            :init-width="100"
-                            :min-width="20"
-                            :height="100"
-                        />
-                        <b-form-file
-                            v-model="$v.form.image.$model"
-                            accept="image/*"
-                            placeholder="Upload image"
-                            drop-placeholder="Drop image"
-                            @input="onSelectFile"
-                        />
-                        <b-form-invalid-feedback :state="!submitted || $v.form.image.required">
-                            This is required
-                        </b-form-invalid-feedback>
-                    </b-form-group>
-                </div>
+        <div class="row w-100">
+            <div class="col-lg-6">
+                <b-form-group>
+                    <clipper-basic
+                        v-if="imageData"
+                        ref="clipper"
+                        class="mb-3"
+                        :src="imageData"
+                        :ratio="1"
+                        :init-height="100"
+                        :init-width="100"
+                        :min-width="20"
+                        :height="100"
+                    />
+                    <b-form-file
+                        v-model="imageFile"
+                        accept="image/*"
+                        placeholder="Upload image"
+                        drop-placeholder="Drop image"
+                        @input="onSelectFile"
+                    />
+                </b-form-group>
             </div>
+        </div>
 
         <b-form-group>
             <b-form-input
@@ -71,6 +69,9 @@
                 Content is too long
             </b-form-invalid-feedback>
         </b-form-group>
+        <b-form-invalid-feedback :state="!error">
+            {{ error }}
+        </b-form-invalid-feedback>
         <Link class="px-2" @click.native="onSubmit" dark>Submit</Link>
         <Link class="px-2" @click.native="$emit('onCancel')" dark>Cancel</Link>
     </b-form>
@@ -91,37 +92,64 @@
                     title: '',
                     description: '',
                     content: '',
-                    image: null,
+                    image: '',
                 },
+                imageFile: null,
                 imageData: null,
                 submitted: false,
+                error: '',
             }
         },
         created() {
             if(this.project) {
-                Object.keys(this.form).forEach(key => {
-                    if(key in this.project) {
-                        this.form[key] = this.project[key];
-                    }
-                });
+                this.form.title = this.project.title;
+                this.form.description = this.project.description;
+                this.form.content = this.project.content;
             }
         },
         methods: {
             onSubmit() {
                 this.submitted = true;
                 if(!this.$v.$invalid) {
-                    this.$emit('onSubmit', this.form);
+                    if(this.imageFile) {
+                        let data = new FormData();
+                        let canvas = this.$refs.clipper.clip();
+
+                        this.resizeCanvas(canvas, 1000).toBlob(blob => {
+                            data.append('image', blob);
+                            this.$store.dispatch('imageUpload', data)
+                                .then(response => {
+                                    this.form.image = response.data;
+                                    this.$emit('onSubmit', this.form);
+                                })
+                                .catch(error => {
+                                    this.error = error.message;
+                                });
+                        });
+                    }
+                    else {
+                        this.$emit('onSubmit', this.form);
+                    }
                 }
             },
             onSelectFile() {
                 const reader = new FileReader;
-                if(this.form.image) {
-                    reader.readAsDataURL(this.form.image);
+                if(this.imageFile) {
+                    reader.readAsDataURL(this.imageFile);
                 }
 
                 reader.onload = e => {
                     this.imageData = e.target.result;
                 }
+            },
+            resizeCanvas(canvas, max) {
+                let c = document.createElement('canvas');
+                let size = Math.min(canvas.width, max);
+                c.width = size;
+                c.height = size;
+                let ctx = c.getContext('2d');
+                ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, size, size);
+                return c;
             }
         },
         validations: {
@@ -138,10 +166,7 @@
                     required,
                     maxLength: maxLength(65000),
                 },
-                image: {
-                    required,
-                }
-            }
+            },
         }
 	}
 </script>

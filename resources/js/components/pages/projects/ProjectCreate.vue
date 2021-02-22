@@ -1,17 +1,26 @@
 <template>
-    <div class="h-100 overflow-auto">
+    <Page
+        title="Create Project"
+        :image="getImage('projects.png')"
+        :back="{name: 'projects'}"
+        scrollable
+    >
         <ProjectForm @onSubmit="onSubmit" @onCancel="onCancel"/>
-    </div>
+    </Page>
 </template>
 
 <script>
 	import ProjectForm from "../../forms/ProjectForm";
+    import Page from "../../layouts/Page";
     export default {
 		name: "ProjectCreate",
-        components: {ProjectForm},
+        components: {Page, ProjectForm},
         methods: {
-		    onSubmit() {
-                this.$router.push({ name: 'projects' });
+		    onSubmit(data) {
+		        this.$store.dispatch('createProject', data)
+                .then(response => {
+                    this.$router.push({ name: 'projects' });
+                })
             },
             onCancel() {
                 this.$router.push({ name: 'projects' });
