@@ -6,11 +6,3 @@ export const globalMixin = {
         ...helpers,
     },
 }
-
-export const projectMixin = {
-    created() {
-        if(!store.getters.projects) {
-            store.dispatch('getProjects');
-        }
-    },
-}

@@ -1,7 +1,7 @@
 <template>
     <Page
         title="Projects"
-        :image="getImage('projects.png')"
+        :image="publicImage('projects.png')"
         :actions="actions"
         :back="{name: 'home'}"
         scrollable
@@ -16,11 +16,8 @@
     import Content from "../../layouts/Content";
     import ListGroup from "../../layouts/list/ListGroup";
     import Page from "../../layouts/Page";
-    import {projectMixin} from '../../../mixins'
-    import {store} from "../../../store";
     export default {
 		name: "Projects",
-        mixins: [projectMixin],
         components: {Page, ListGroup, ListItem, Content},
         computed: {
 		    items() {
@@ -44,7 +41,7 @@
 		        return [];
             },
 		    projects() {
-		        return this.$store.getters.projects;
+		        return this.$store.state.projects;
             },
             auth() {
 		        return this.$store.getters.auth;

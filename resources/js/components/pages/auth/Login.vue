@@ -1,7 +1,7 @@
 <template>
     <Page
         title="Login"
-        :image="getImage('login.png')"
+        :image="publicImage('login.png')"
         :back="{name: 'home'}"
     >
         <p>Please sign in.</p>

@@ -16,6 +16,9 @@ class ProjectController extends Controller
     {
         $data = $request->all();
         $data['user_id'] = $request->user()->id;
+        if($data['image'] === null) {
+            $data['image'] = '/images/no-image.png';
+        }
         $project = Project::create($data);
         return response()->json($project, 201);
     }
@@ -27,8 +30,13 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = $request->all();
+        $data['user_id'] = $request->user()->id;
+        if($data['image'] === null) {
+            $data['image'] = '/images/no-image.png';
+        }
         $project = Project::findOrFail($id);
-        $project->update($request->all());
+        $project->update($data);
         return response()->json($project, 200);
     }
 

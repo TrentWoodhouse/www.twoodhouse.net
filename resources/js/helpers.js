@@ -1,3 +1,10 @@
+import {store} from './store';
+
 export const helpers = {
-    getImage(filename) { return '/images/' + filename; },
+    publicImage(filename) {
+        return '/images/' + filename;
+    },
+    loadImage(path, callback) {
+        store.commit('saveImage', {path, callback});
+    },
 }

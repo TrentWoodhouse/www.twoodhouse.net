@@ -2,7 +2,7 @@
 	<div v-if="src">
         <div class="d-none d-md-inline align-right h-100">
             <transition name="fade">
-                <img :src="src" :key="src" class="img-regular h-100">
+                <img v-if="src" :src="src" :key="src" class="img-regular h-100">
             </transition>
         </div>
         <div class="d-inline d-md-none h-100">
@@ -16,9 +16,23 @@
 <script>
 	export default {
 		name: "SideImage",
-        props: {
-		    src: String,
+        data() {
+		    return {
+		        src: '/images/blank.png',
+            }
         },
+        computed: {
+		    image() {
+		        return this.$store.state.image;
+            }
+        },
+        watch: {
+		    image(val) {
+		        if(val) {
+		            this.loadImage(val, path => this.src = path);
+                }
+            }
+        }
 	}
 </script>
 
@@ -32,7 +46,9 @@
         -webkit-mask-size: contain;
         mask-size: contain;
         -webkit-mask-image: url("/images/mask.png");
-        mask-image: url("/images/mask.png")
+        mask-image: url("/images/mask.png");
+        position:absolute;
+        right: 0;
     }
 
     .img-responsive {
@@ -43,9 +59,7 @@
     }
 
     .fade-enter-active, .fade-leave-active {
-        transition: opacity .2s;
-        position:absolute;
-        right: 0;
+        transition: opacity .5s;
     }
     .fade-enter, .fade-leave-to {
         opacity: 0;

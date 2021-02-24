@@ -9,12 +9,18 @@
 
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
+    border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 3px;
     background-color: #ccd;
+}
+
+.scrollable {
+    scrollbar-color: #ccd rgba(0, 0, 0, 0.3);
+    scrollbar-width: thin;
+    overflow-y: auto;
 }
 
 .no-select {

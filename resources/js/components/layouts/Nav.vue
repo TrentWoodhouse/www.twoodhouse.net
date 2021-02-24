@@ -1,8 +1,9 @@
 <template>
     <div>
-        <div v-for="item of navItems" class="no-select">
+        <div v-for="item of navItems" class="no-select mb-3">
             <Link :to="item.route" dark>
-                <h1 class="d-inline">
+                <h1 class="display-4 d-inline">
+                    <b-icon v-if="item.icon" :icon="item.icon"/>
                     {{ item.name }}
                     <h5 class="d-inline align-middle">
                         <b-badge pill v-if="item.badge" :variant="item.badge.variant">

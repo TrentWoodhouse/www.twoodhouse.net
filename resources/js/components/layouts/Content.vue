@@ -1,5 +1,5 @@
 <template>
-    <div class="w-100 h-100 p-3 content-page overflow-auto">
+    <div class="w-100 h-100 p-3 content-page scrollable">
         <slot/>
     </div>
 </template>
@@ -36,8 +36,8 @@
     }
 
     .content-page {
-        border-radius: 5px;
-        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 3px;
+        background-color: rgba(255, 255, 255, 0.25);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }

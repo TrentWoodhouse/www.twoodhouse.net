@@ -1,7 +1,7 @@
 <template>
     <Page
         title="About Me"
-        :image="getImage('about.png')"
+        :image="publicImage('about.png')"
         :back="{name: 'home'}"
     >
         <Content>

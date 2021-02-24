@@ -1,7 +1,7 @@
 <template>
-    <div v-if="auth" class="top-right p-3 text-right">
-        <div>{{ auth.user.full_name }}</div>
-        <small>
+    <div v-if="auth">
+        <span class="text-danger">Signed in.</span>
+        <small class="ml-2">
             <Link @click.native="logout">Logout</Link>
         </small>
     </div>

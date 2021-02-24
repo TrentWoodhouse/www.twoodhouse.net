@@ -22,7 +22,7 @@ class CreateProjectsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->text('content');
-            $table->string('image');
+            $table->string('image')->default('/images/no-image.png');
             $table->timestamps();
         });
     }

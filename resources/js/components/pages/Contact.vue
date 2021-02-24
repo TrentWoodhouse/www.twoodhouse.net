@@ -1,7 +1,7 @@
 <template>
     <Page
         title="Contact"
-        :image="getImage('contact.png')"
+        :image="publicImage('contact.png')"
         :back="{name:'home'}">
         <p>Leave your name and email and I'll get back to you as soon as I can.</p>
         <ContactForm @onSubmit="onSubmit" @onCancel="onCancel"/>

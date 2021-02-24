@@ -1,7 +1,7 @@
 <template>
     <Page
         title="Create Project"
-        :image="getImage('projects.png')"
+        :image="publicImage('projects.png')"
         :back="{name: 'projects'}"
         scrollable
     >

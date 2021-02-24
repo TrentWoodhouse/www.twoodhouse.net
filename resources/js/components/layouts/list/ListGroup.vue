@@ -1,7 +1,15 @@
 <template>
     <div>
         <div v-if="loaded">
-            <ListItem v-for="item in items" :key="item.id" :title="item.title" :src="item.src" :description="item.description" :badge="getBadge(item)" :to="item.to"/>
+            <ListItem
+                v-for="item in items"
+                :key="item.id"
+                :title="item.title"
+                :src="item.src"
+                :description="item.description"
+                :badge="getBadge(item)"
+                :to="item.to"
+            />
         </div>
         <div v-else>
             <b-card v-for="n in repeat" :key="n" no-body class="overflow-hidden mb-3">
