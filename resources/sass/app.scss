@@ -1,8 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed');
-@import url('https://fonts.googleapis.com/css?family=Oswald');
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@500&family=Roboto:wght@300&display=swap');
 
 // Variables
 @import 'variables';
@@ -11,7 +8,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index';
 
-@import '~vuejs-clipper/dist/vuejs-clipper.css';
+// CKEditor
+@import 'ckeditor';
 
 // Custom
 @import './custom';

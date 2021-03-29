@@ -17,20 +17,25 @@
 		    return {
                 navItems: [
                     {
-                        name: 'Get to Know Me',
+                        name: 'About',
                         icon: 'person-fill',
                         route: { name: 'about' },
                     },
                     {
-                        name: 'My Projects',
+                        name: 'Projects',
                         icon: 'tools',
                         route: { name: 'projects' },
                     },
-                    // {
-                    //     name: 'My Blog',
-                    //     icon: 'book-fill,
-                    //     route: { name: 'home' },
-                    // },
+                    {
+                        name: 'Blog',
+                        icon: 'book-fill',
+                        route: { name: 'home' },
+                        badge: {
+                            text: 'Coming Soon',
+                            variant: 'danger',
+                        },
+                        disabled: true,
+                    },
                     {
                         name: 'Contact Me',
                         icon: 'envelope-fill',

@@ -1,7 +1,7 @@
 <template>
     <div v-if="loaded" class="position-relative h-100 overflow-hidden">
         <SideImage/>
-        <div class="front p-3 h-100">
+        <div class="front p-4 h-100">
             <div class="d-flex flex-column h-100">
                 <div id="header">
                     <div class="no-select d-flex">
@@ -14,6 +14,7 @@
                                 <h4 class="d-inline-block d-md-none">{{ title }}</h4>
                             </div>
                             <Auth class="ml-2"/>
+                            <Alert/>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -46,10 +47,11 @@
 <script>
     import SideImage from "./layouts/SideImage";
     import Auth from "./layouts/Auth";
+    import Alert from "./layouts/Alert";
     import Link from "./layouts/Link";
     export default {
         name: "App",
-        components: {Link, Auth, SideImage},
+        components: {Link, Auth, Alert, SideImage},
         data() {
             return {
                 loaded: true,

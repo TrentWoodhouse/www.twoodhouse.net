@@ -24,9 +24,13 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^25.0.0",
+        "@ckeditor/ckeditor5-vue2": "^1.0.5",
         "bootstrap-vue": "^2.21.1",
         "moment": "^2.29.1",
         "rxjs": "^6.6.3",
+        "tiptap": "^1.32.1",
+        "tiptap-extensions": "^1.35.1",
         "vue-axios": "^3.2.0",
         "vue-router": "^3.4.9",
         "vue-rx": "^6.2.0",

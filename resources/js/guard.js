@@ -18,7 +18,6 @@ const guards = [
 ]
 
 export function verify(route, guard) {
-    console.log(route, guard);
     if(typeof(guard) === 'string') {
         switch(guard) {
             case 'auth':

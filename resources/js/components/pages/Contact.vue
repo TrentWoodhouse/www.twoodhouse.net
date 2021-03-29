@@ -1,6 +1,6 @@
 <template>
     <Page
-        title="Contact"
+        title="Contact Me"
         :image="publicImage('contact.png')"
         :back="{name:'home'}">
         <p>Leave your name and email and I'll get back to you as soon as I can.</p>
@@ -15,8 +15,22 @@
 		name: "Contact",
         components: {Page, ContactForm},
         methods: {
-            onSubmit() {
-                this.$router.push({ name: 'home' });
+            onSubmit(data) {
+                this.$store.dispatch('sendContactMail', data)
+                .then(response => {
+                    this.$store.commit('addAlert', {
+                        message: 'Message sent.',
+                        variant: 'success',
+                    })
+                    this.$router.push({ name: 'home' });
+                })
+                .catch(error => {
+                    this.$store.commit('addAlert', {
+                        message: 'Something went wrong, please try again later.',
+                        variant: 'danger',
+                    })
+                    this.$router.push({ name: 'home' });
+                });
             },
             onCancel() {
                 this.$router.push({ name: 'home' });

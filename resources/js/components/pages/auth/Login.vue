@@ -19,6 +19,10 @@
 		    onSubmit(data) {
                 this.$store.dispatch('login', data)
                     .then(response => {
+                        this.$store.commit('addAlert', {
+                            message: 'Signed in.',
+                            variant: 'success',
+                        })
                         this.$router.push({ name: 'home' });
                     })
                     .catch(error => {

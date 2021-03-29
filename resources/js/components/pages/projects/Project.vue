@@ -12,6 +12,7 @@
                     <div><small>Uploaded {{ format(project.created_at) }}</small></div>
                 </div>
                 <div v-html="project.content"></div>
+                <div><small>Last updated {{ format(project.updated_at) }}</small></div>
             </div>
         </Content>
     </Page>

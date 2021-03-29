@@ -1,27 +1,11 @@
 <template>
     <b-link
-        v-if="go"
-        :class="hoverClass"
-        @mouseover.native="hover = true"
-        @mouseleave.native="hover = false"
-        @click="$router.go(go)"
-    >
-        <slot></slot>
-    </b-link>
-    <router-link
-        v-else-if="to"
+        v-else
         :to="to"
         :class="hoverClass"
         @mouseover.native="hover = true"
         @mouseleave.native="hover = false"
-    >
-        <slot></slot>
-    </router-link>
-    <b-link
-        v-else
-        :class="hoverClass"
-        @mouseover.native="hover = true"
-        @mouseleave.native="hover = false"
+        :disabled="disabled"
     >
         <slot></slot>
     </b-link>
@@ -32,12 +16,15 @@
 		name: "Link",
         props: {
 		    to: [Object, String],
-            go: Number,
             variant: {
 		        type: String,
                 default: 'light',
             },
             dark: {
+		        type: Boolean,
+                default: false,
+            },
+            disabled: {
 		        type: Boolean,
                 default: false,
             }
@@ -50,9 +37,9 @@
         computed: {
             hoverClass() {
                 let clss = {};
-                clss[`text-${this.variant}`] = this.hover;
-                clss['text-secondary'] = this.dark && !this.hover;
-                return clss
+                clss[`text-${this.variant}`] = this.hover && !this.disabled;
+                clss['text-secondary'] = (this.dark && !this.hover) || this.disabled;
+                return clss;
             }
         }
 	}

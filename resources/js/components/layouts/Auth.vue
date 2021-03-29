@@ -1,10 +1,7 @@
 <template>
-    <div v-if="auth">
-        <span class="text-danger">Signed in.</span>
-        <small class="ml-2">
-            <Link @click.native="logout">Logout</Link>
-        </small>
-    </div>
+    <small v-if="auth" class="ml-2 mr-3">
+        <Link @click.native="logout">Logout</Link>
+    </small>
 </template>
 
 <script>

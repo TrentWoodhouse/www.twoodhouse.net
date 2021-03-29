@@ -1,15 +1,15 @@
 <template>
     <div>
         <div v-for="item of navItems" class="no-select mb-3">
-            <Link :to="item.route" dark>
-                <h1 class="display-4 d-inline">
+            <Link :to="item.route" :disabled="item.disabled">
+                <h1 class="d-inline">
                     <b-icon v-if="item.icon" :icon="item.icon"/>
                     {{ item.name }}
-                    <h5 class="d-inline align-middle">
+                    <h3 class="d-inline align-middle">
                         <b-badge pill v-if="item.badge" :variant="item.badge.variant">
                             {{ item.badge.text }}
                         </b-badge>
-                    </h5>
+                    </h3>
                 </h1>
             </Link>
         </div>

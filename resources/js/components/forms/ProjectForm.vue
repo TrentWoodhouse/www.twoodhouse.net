@@ -57,11 +57,12 @@
             </b-form-invalid-feedback>
         </b-form-group>
         <b-form-group>
-            <vue-editor
-                id="content"
-                v-model="$v.form.content.$model"
-                placeholder="Write your content here..."
-            />
+<!--            <vue-editor-->
+<!--                id="content"-->
+<!--                v-model="$v.form.content.$model"-->
+<!--                placeholder="Write your content here..."-->
+<!--            />-->
+            <CKEditor/>
             <b-form-invalid-feedback :state="!submitted || $v.form.content.required">
                 This is required
             </b-form-invalid-feedback>
@@ -80,9 +81,10 @@
 <script>
 	import Link from "../layouts/Link";
     import {maxLength, required} from "vuelidate/lib/validators";
+    import CKEditor from "../layouts/CKEditor";
     export default {
 		name: "ProjectForm",
-        components: {Link},
+        components: {CKEditor, Link},
         props: {
 		    project: Object,
         },

@@ -18,6 +18,7 @@ export const store = new Vuex.Store({
         image: null,
         title: null,
         actions: [],
+        alerts: [],
     },
     getters: {
         auth(state) {
@@ -41,6 +42,21 @@ export const store = new Vuex.Store({
         clearAuth(state) {
             state.auth = null;
             localStorage.removeItem('auth');
+        },
+        addAlert(state, alert) {
+            alert.scope = alert.scope || 'app';
+            state.alerts.push(alert);
+        },
+        removeAlert(state, scope) {
+            state.alerts = state.alerts.filter(a => a.scope !== scope);
+        },
+        updateAppAlert(state) {
+            state.alerts = state.alerts.filter(a => !a.immediate || a.scope !== 'app');
+            state.alerts.forEach(a => {
+                if(a.scope === 'app') {
+                    a.immediate = true;
+                }
+            });
         },
         setObject(state, {object, data}) {
             state[object] = data;
@@ -113,6 +129,9 @@ export const store = new Vuex.Store({
         },
         imageUpload(context, data) {
             return axios.post('/image-upload', data, context.getters._config({'Content-Type': 'multipart/form-data'}));
+        },
+        sendContactMail(context, data) {
+            return axios.post('/contact', data, context.getters._config());
         }
     }
 });

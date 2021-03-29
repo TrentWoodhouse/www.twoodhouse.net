@@ -3,7 +3,8 @@
         <div class="d-flex h-100">
             <div class="flex-column">
                 <Link v-if="back" :to="back" dark>
-                    <b-icon icon="chevron-left" font-scale="3" />
+                    <b-icon icon="chevron-left" class="d-none d-md-inline-block" font-scale="3"/>
+                    <b-icon icon="chevron-left" class="d-inline-block d-md-none" font-scale="2"/>
                 </Link>
             </div>
             <div class="flex-fill">

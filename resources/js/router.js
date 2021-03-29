@@ -14,6 +14,8 @@ import ProjectCreate from "./components/pages/projects/ProjectCreate";
 import ProjectEdit from "./components/pages/projects/ProjectEdit";
 import ProjectDelete from "./components/pages/projects/ProjectDelete";
 
+import {store} from "./store";
+
 const routes = [
     {
         path: '/',
@@ -118,5 +120,6 @@ router.beforeEach((to, from, next) => {
             }
         }
     }
+    store.commit('updateAppAlert');
     next();
 });

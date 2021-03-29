@@ -28,3 +28,5 @@ Route::apiResource('project', 'ProjectController')->only([
 Route::middleware('auth:sanctum')->apiResource('project', 'ProjectController')->only([
     'store', 'update', 'destroy'
 ]);
+
+Route::post('/contact', 'MailController@contact');

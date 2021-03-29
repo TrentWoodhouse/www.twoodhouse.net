@@ -1,0 +1,54 @@
+
+
+.ckeditor {
+    height: 450px;
+    overflow-y: hidden;
+}
+
+.ckeditor-content {
+    overflow-y: auto;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: $t-light;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    //border: none !important;
+}
+
+.ckeditor-content > div {
+    outline: none;
+}
+
+.ckeditor-menu {
+    background-color: $t-dark;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    //border: none !important;
+    //z-index: 100;
+}
+
+.ckeditor-button:hover {
+    color: $light !important;
+}
+
+.ckeditor-button {
+    color: $light !important;
+    margin-right: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.ckeditor-button.active {
+    background-color: $t-light;
+}
+
+.ckeditor-button > svg {
+    position:relative;
+    top: calc(50% - 9px);
+}
+
+
