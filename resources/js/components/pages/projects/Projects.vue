@@ -26,6 +26,7 @@
                     title: project.title,
                     src: project.image,
                     description: project.description,
+                    createdAt: project.created_at,
                     to: { name: 'project', params: { id: project.id }},
                 })) || [];
             },

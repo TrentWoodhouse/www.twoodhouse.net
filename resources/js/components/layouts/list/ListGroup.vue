@@ -72,9 +72,9 @@
         },
         methods: {
             getBadge(item) {
-                let createdAt = moment(item.created_at);
+                let createdAt = moment(item.createdAt);
                 let now = moment();
-                if(!now.isAfter(createdAt.add(7, 'days').startOf('day'))) {
+                if(now.isBefore(createdAt.add(7, 'days').startOf('day'))) {
                     return {
                         text: 'New',
                         variant: 'danger',
