@@ -14310,7 +14310,7 @@ input[type=color].form-control:disabled {
   height: 400px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(125, 125, 125, 0.25);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -14341,12 +14341,24 @@ input[type=color].form-control:disabled {
 }
 
 .ckeditor-button.active {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(125, 125, 125, 0.25);
 }
 
 .ckeditor-button > svg {
   position: relative;
   top: calc(50% - 9px);
+}
+
+::-moz-selection {
+  background: #e3342f;
+}
+
+::selection {
+  background: #e3342f;
+}
+
+::-moz-selection {
+  background: #e3342f;
 }
 
 .form-control,
@@ -14390,7 +14402,7 @@ input[type=color].form-control:disabled {
 }
 
 .card {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(125, 125, 125, 0.25);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }

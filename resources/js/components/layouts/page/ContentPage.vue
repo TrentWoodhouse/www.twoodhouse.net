@@ -37,7 +37,7 @@
 
     .content-page {
         border-radius: 3px;
-        background-color: rgba(255, 255, 255, 0.25);
+        background-color: rgba(125, 125, 125, 0.25);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }

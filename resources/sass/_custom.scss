@@ -1,3 +1,10 @@
+::selection {
+    background: $red;
+}
+::-moz-selection {
+    background: $red;
+}
+
 .form-control, .form-control:focus {
     backdrop-filter: blur(10px);
     border: none;

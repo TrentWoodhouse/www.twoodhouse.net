@@ -3,7 +3,7 @@
         <editor-menu-bar :editor="editor" v-slot="{commands, isActive}" class="ckeditor-menu">
             <div class="p-2">
                 <b-link
-                    v-for="button in buttons" :key="button.type"
+                    v-for="(button, n) in buttons" :key="n"
                     class="ckeditor-button"
                     :class="{'active': isActive[button.type](button.params)}"
                     @click="commands[button.type](button.params)"

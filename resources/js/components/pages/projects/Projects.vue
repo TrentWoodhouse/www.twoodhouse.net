@@ -13,7 +13,7 @@
 
 <script>
     import ListItem from "../../layouts/list/ListItem";
-    import Content from "../../layouts/Content";
+    import Content from "../../layouts/page/ContentPage";
     import ListGroup from "../../layouts/list/ListGroup";
     import Page from "../../layouts/Page";
     export default {

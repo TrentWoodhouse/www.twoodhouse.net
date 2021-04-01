@@ -12,7 +12,7 @@
                         :init-height="100"
                         :init-width="100"
                         :min-width="20"
-                        :height="100"
+                        :width="100"
                     />
                     <b-form-file
                         v-model="imageFile"
@@ -57,11 +57,6 @@
             </b-form-invalid-feedback>
         </b-form-group>
         <b-form-group>
-<!--            <vue-editor-->
-<!--                id="content"-->
-<!--                v-model="$v.form.content.$model"-->
-<!--                placeholder="Write your content here..."-->
-<!--            />-->
             <CKEditor v-model="$v.form.content.$model"/>
             <b-form-invalid-feedback :state="!submitted || $v.form.content.required">
                 This is required
