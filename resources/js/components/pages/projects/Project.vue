@@ -21,7 +21,7 @@
 <script>
     import moment from 'moment';
 	import Content from "../../layouts/page/ContentPage";
-    import Page from "../../layouts/Page";
+    import Page from "../../layouts/page/Page";
     export default {
 		name: "Project",
         components: {Page, Content},

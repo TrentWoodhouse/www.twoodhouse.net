@@ -15,7 +15,7 @@
     import ListItem from "../../layouts/list/ListItem";
     import Content from "../../layouts/page/ContentPage";
     import ListGroup from "../../layouts/list/ListGroup";
-    import Page from "../../layouts/Page";
+    import Page from "../../layouts/page/Page";
     export default {
 		name: "Projects",
         components: {Page, ListGroup, ListItem, Content},

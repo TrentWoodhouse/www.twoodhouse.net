@@ -10,7 +10,7 @@
 
 <script>
 	import ContactForm from "../forms/ContactForm";
-    import Page from "../layouts/Page";
+    import Page from "../layouts/page/Page";
     export default {
 		name: "Contact",
         components: {Page, ContactForm},

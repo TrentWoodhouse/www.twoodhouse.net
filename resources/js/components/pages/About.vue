@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import Page from "../layouts/Page";
+    import Page from "../layouts/page/Page";
     import Content from "../layouts/page/ContentPage";
     import TextPage from "../layouts/page/TextPage";
     export default {

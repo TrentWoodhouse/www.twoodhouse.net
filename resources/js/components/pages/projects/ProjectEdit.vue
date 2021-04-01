@@ -11,13 +11,13 @@
 
 <script>
 	import ProjectForm from "../../forms/ProjectForm";
-    import Page from "../../layouts/Page";
+    import Page from "../../layouts/page/Page";
     export default {
 		name: "ProjectEdit",
         components: {Page, ProjectForm},
         computed: {
             project() {
-                return this.$store.state.projects?.find(p => p.id == this.$route.params.id);
+                return this.$store.state.projects?.find(p => p.id === this.$route.params.id);
             },
             image() {
                 return this.project?.image;

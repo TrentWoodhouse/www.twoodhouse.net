@@ -12,7 +12,7 @@
                         :init-height="100"
                         :init-width="100"
                         :min-width="20"
-                        :width="100"
+                        :height="100"
                     />
                     <b-form-file
                         v-model="imageFile"
