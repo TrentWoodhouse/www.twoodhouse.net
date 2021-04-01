@@ -14305,13 +14305,9 @@ input[type=color].form-control:disabled {
   vertical-align: text-bottom;
 }
 
-.ckeditor {
-  height: 450px;
-  overflow-y: hidden;
-}
-
 .ckeditor-content {
   overflow-y: auto;
+  height: 400px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   background-color: rgba(255, 255, 255, 0.25);
@@ -14401,8 +14397,12 @@ input[type=color].form-control:disabled {
 
 pre {
   background-color: rgba(0, 0, 0, 0.5) !important;
-  color: #f8f9fa;
   border-radius: 3px;
+  padding: 0.5rem;
+}
+
+code {
+  color: #f8f9fa !important;
 }
 
 .vuejs-clipper-fixed__wrap {
@@ -14415,5 +14415,9 @@ h2,
 h3,
 h4 {
   font-family: "Asap";
+}
+
+p {
+  margin-bottom: 0.5rem;
 }
 

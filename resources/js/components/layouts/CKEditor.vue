@@ -3,10 +3,10 @@
         <editor-menu-bar :editor="editor" v-slot="{commands, isActive}" class="ckeditor-menu">
             <div class="p-2">
                 <b-link
-                    v-for="button in buttons"
+                    v-for="button in buttons" :key="button.type"
                     class="ckeditor-button"
-                    :class="{'active': isActive[button.type]()}"
-                    @click="commands[button.type]()"
+                    :class="{'active': isActive[button.type](button.params)}"
+                    @click="commands[button.type](button.params)"
                     type="button"
                 >
                     <b-icon :icon="button.icon" :scale="1.5"/>
@@ -44,10 +44,13 @@
             EditorContent,
             EditorMenuBar,
         },
+        props: {
+            value: String,
+        },
         data() {
             return {
                 editor: new Editor({
-                    content: '<p>This is just a <b>boring paragraph</b></p>',
+                    content: this.value,
                     extensions: [
                         new Blockquote(),
                         new BulletList(),
@@ -66,7 +69,10 @@
                         new Strike(),
                         new Underline(),
                         new History(),
-                    ]
+                    ],
+                    onUpdate: ({ getHTML }) => {
+                        this.$emit('input', getHTML());
+                    }
                 }),
                 buttons: [
                     {
@@ -86,6 +92,20 @@
                         icon: 'type-underline',
                     },
                     {
+                        type: 'heading',
+                        icon: 'type-h1',
+                        params: {level: 1}
+                    },
+                    {
+                        type: 'heading',
+                        icon: 'type-h2',
+                        params: {level: 2}
+                    },
+                    {
+                        type: 'heading',
+                        icon: 'type-h3',
+                        params: {level: 3}
+                    },{
                         type: 'code',
                         icon: 'code',
                     },
@@ -110,6 +130,7 @@
                         icon: 'blockquote-left',
                     },
 
+
                     // 'paragraph',
                     // 'heading',
                     // 'hardBreak',
@@ -122,7 +143,7 @@
         methods: {
             yeet(data) {
                 console.log('yeet', data);
-            }
+            },
         },
         beforeDestroy() {
             this.editor.destroy()

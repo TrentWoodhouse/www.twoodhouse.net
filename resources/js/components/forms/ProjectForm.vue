@@ -62,7 +62,7 @@
 <!--                v-model="$v.form.content.$model"-->
 <!--                placeholder="Write your content here..."-->
 <!--            />-->
-            <CKEditor/>
+            <CKEditor v-model="$v.form.content.$model"/>
             <b-form-invalid-feedback :state="!submitted || $v.form.content.required">
                 This is required
             </b-form-invalid-feedback>
