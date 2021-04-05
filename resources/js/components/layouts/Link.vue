@@ -36,10 +36,10 @@
         },
         computed: {
             hoverClass() {
-                let clss = {};
-                clss[`text-${this.variant}`] = this.hover && !this.disabled;
-                clss['text-secondary'] = (this.dark && !this.hover) || this.disabled;
-                return clss;
+                return {
+                    [`text-${this.variant}`]:  !this.disabled && !(this.dark && !this.hover),
+                    'text-secondary': this.dark || this.disabled
+                };
             }
         }
 	}

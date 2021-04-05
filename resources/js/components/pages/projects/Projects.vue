@@ -21,14 +21,15 @@
         components: {Page, ListGroup, ListItem, Content},
         computed: {
 		    items() {
-		        return this.projects?.map(project => ({
-                    id: project.id,
-                    title: project.title,
-                    src: project.image,
-                    description: project.description,
-                    createdAt: project.created_at,
-                    to: { name: 'project', params: { id: project.id }},
-                })) || [];
+		        return this.projects?.sort((a, b) => (a.created_at < b.created_at) ? 1 : -1)
+                    .map(project => ({
+                        id: project.id,
+                        title: project.title,
+                        src: project.image,
+                        description: project.description,
+                        createdAt: project.created_at,
+                        to: { name: 'project', params: { id: project.id }},
+                    })) || [];
             },
             actions() {
 		        if(this.auth) {

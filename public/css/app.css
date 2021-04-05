@@ -170,13 +170,13 @@ sup {
 }
 
 a {
-  color: #f8f9fa;
+  color: #e3342f;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #cbd3da;
+  color: #ae1c17;
   text-decoration: none;
 }
 
@@ -3284,12 +3284,12 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #f8f9fa;
+  color: #e3342f;
   text-decoration: none;
 }
 
 .btn-link:hover {
-  color: #cbd3da;
+  color: #ae1c17;
   text-decoration: none;
 }
 
@@ -5226,14 +5226,14 @@ input[type=button].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #f8f9fa;
+  color: #e3342f;
   background-color: #fff;
   border: 1px solid #dee2e6;
 }
 
 .page-link:hover {
   z-index: 2;
-  color: #cbd3da;
+  color: #ae1c17;
   text-decoration: none;
   background-color: #e9ecef;
   border-color: #dee2e6;
@@ -14430,6 +14430,16 @@ h4 {
 }
 
 p {
+  margin-bottom: 0.5rem;
+}
+
+.tooltip .tooltip-inner {
+  max-width: 400px !important;
+}
+
+blockquote {
+  padding-left: 15px;
+  border-left: 3px solid gray;
   margin-bottom: 0.5rem;
 }
 

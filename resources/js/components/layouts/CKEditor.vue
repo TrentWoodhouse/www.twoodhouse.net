@@ -1,16 +1,40 @@
 <template>
     <div class="ckeditor">
-        <editor-menu-bar :editor="editor" v-slot="{commands, isActive}" class="ckeditor-menu">
+        <editor-menu-bar :editor="editor" v-slot="{commands, isActive, getMarkAttrs}" class="ckeditor-menu">
             <div class="p-2">
-                <b-link
-                    v-for="(button, n) in buttons" :key="n"
-                    class="ckeditor-button"
-                    :class="{'active': isActive[button.type](button.params)}"
-                    @click="commands[button.type](button.params)"
-                    type="button"
+                <span
+                    v-for="(button, n) in buttons"
+                    :key="n"
                 >
-                    <b-icon :icon="button.icon" :scale="1.5"/>
-                </b-link>
+                    <b-link
+                        v-if="!button.custom"
+                        :id="button.type"
+                        class="ckeditor-button"
+                        :class="{'active': isActive[button.type](button.params)}"
+                        @click="commands[button.type](button.params)"
+                        type="button"
+                    >
+                        <b-icon :icon="button.icon" :scale="1.5"/>
+                    </b-link>
+                    <span v-else-if="button.type === 'link'">
+                        <b-link
+                            :id="button.type"
+                            class="ckeditor-button"
+                            :class="{'active': isActive[button.type](button.params)}"
+                            @click="href = getMarkAttrs('link').href"
+                            type="button"
+                        >
+                            <b-icon :icon="button.icon" :scale="1.5"/>
+                        </b-link>
+                        <b-tooltip target="link" triggers="click blur" placement="bottom">
+                            <b-form @submit.prevent inline class="mb-0">
+                                <b-input v-model="href" placeholder="https://"/>
+                                <b-link @click="commands['link']({href})" class="text-secondary ml-2"><b-icon icon="check2" font-scale="2"/></b-link>
+                                <b-link @click="commands['link']({href: null})" class="text-secondary ml-2"><b-icon icon="x" font-scale="2"/></b-link>
+                            </b-form>
+                        </b-tooltip>
+                    </span>
+                </span>
             </div>
         </editor-menu-bar>
         <editor-content :editor="editor" class="ckeditor-content p-3"/>
@@ -49,6 +73,7 @@
         },
         data() {
             return {
+                href: '',
                 editor: new Editor({
                     content: this.value,
                     extensions: [
@@ -105,7 +130,14 @@
                         type: 'heading',
                         icon: 'type-h3',
                         params: {level: 3}
-                    },{
+                    },
+                    {
+                        type: 'link',
+                        icon: 'link',
+                        params: {href: 'https://www.google.com'},
+                        custom: true,
+                    },
+                    {
                         type: 'code',
                         icon: 'code',
                     },
@@ -130,20 +162,16 @@
                         icon: 'blockquote-left',
                     },
 
-
-                    // 'paragraph',
-                    // 'heading',
                     // 'hardBreak',
                     // 'undo',
                     // 'redo',
-                    // 'link',
                 ]
             }
         },
-        methods: {
-            yeet(data) {
-                console.log('yeet', data);
-            },
+        mounted() {
+            this.$root.$on('bv::tooltip::hidden', e => {
+                this.href = '';
+            });
         },
         beforeDestroy() {
             this.editor.destroy()
