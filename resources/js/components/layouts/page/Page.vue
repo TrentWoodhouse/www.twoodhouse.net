@@ -19,9 +19,9 @@
 </template>
 
 <script>
-	import SideImage from "./SideImage";
-    import Auth from "./Auth";
-    import Link from "./Link";
+	import SideImage from "../SideImage";
+    import Auth from "../Auth";
+    import Link from "../Link";
     export default {
 		name: "Page",
         components: {Link, Auth, SideImage},

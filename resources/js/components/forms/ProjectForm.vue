@@ -57,11 +57,6 @@
             </b-form-invalid-feedback>
         </b-form-group>
         <b-form-group>
-<!--            <vue-editor-->
-<!--                id="content"-->
-<!--                v-model="$v.form.content.$model"-->
-<!--                placeholder="Write your content here..."-->
-<!--            />-->
             <CKEditor v-model="$v.form.content.$model"/>
             <b-form-invalid-feedback :state="!submitted || $v.form.content.required">
                 This is required

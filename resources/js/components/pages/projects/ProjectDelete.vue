@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import Page from "../../layouts/Page";
+    import Page from "../../layouts/page/Page";
     import DeleteForm from "../../forms/DeleteForm";
     export default {
 		name: "ProjectDelete",

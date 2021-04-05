@@ -11,7 +11,7 @@
 
 <script>
     import LoginForm from '../../forms/LoginForm';
-    import Page from "../../layouts/Page";
+    import Page from "../../layouts/page/Page";
 	export default {
 		name: "Login",
         components: {Page, LoginForm},

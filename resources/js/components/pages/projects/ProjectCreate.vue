@@ -11,7 +11,7 @@
 
 <script>
 	import ProjectForm from "../../forms/ProjectForm";
-    import Page from "../../layouts/Page";
+    import Page from "../../layouts/page/Page";
     export default {
 		name: "ProjectCreate",
         components: {Page, ProjectForm},

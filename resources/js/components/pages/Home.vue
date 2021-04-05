@@ -9,7 +9,7 @@
 
 <script>
     import Nav from "../layouts/Nav";
-    import Page from "../layouts/Page";
+    import Page from "../layouts/page/Page";
     export default {
 		name: "Home",
         components: {Page, Nav},

@@ -20,8 +20,9 @@ $cyan: #6cb2eb;
 $gray: #6c757d;
 $dark: #1a1a1d;
 $light: #f8f9fa;
+$danger: #e3342f;
 $t-dark: rgba(0, 0, 0, .5);
-$t-light: rgba(255, 255, 255, 0.25);
+$t-light: rgba(125, 125, 125, 0.25);
 
 $theme-colors: (
     "dark": $dark,
@@ -41,7 +42,7 @@ $input-border-color: none;
 $custom-file-button-bg: #333;
 
 // Links
-$link-color: $light;
+$link-color: $danger;
 $link-decoration: none;
 $link-hover-decoration: none;
 
