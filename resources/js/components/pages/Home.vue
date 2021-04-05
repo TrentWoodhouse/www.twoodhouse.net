@@ -3,7 +3,7 @@
         title="Trent Woodhouse - Coding & Design"
         :image="publicImage('home.png')"
     >
-        <Nav :nav-items="navItems"></Nav>
+        <Nav :nav-items="navItems"/>
     </Page>
 </template>
 
@@ -19,17 +19,17 @@
                     {
                         name: 'About',
                         icon: 'person-fill',
-                        route: { name: 'about' },
+                        route: {name: 'about'},
                     },
                     {
                         name: 'Projects',
                         icon: 'tools',
-                        route: { name: 'projects' },
+                        route: {name: 'posts', params: {type: 'project'}},
                     },
                     {
                         name: 'Blog',
                         icon: 'book-fill',
-                        route: { name: 'home' },
+                        route: {name: 'posts', params: {type: 'blog'}},
                         badge: {
                             text: 'Coming Soon',
                             variant: 'danger',

@@ -50,7 +50,7 @@
         name: "App",
         components: {Link, Auth, Alert, SideImage},
         created() {
-            this.$store.dispatch('getProjects');
+            this.$store.dispatch('getPosts');
         },
         computed: {
             title() {

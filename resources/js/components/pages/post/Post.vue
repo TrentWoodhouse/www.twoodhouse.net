@@ -1,9 +1,9 @@
 <template>
     <Page
-        title="Projects"
+        :title="title"
         :image="image"
         :actions="actions"
-        :back="{name: 'projects'}"
+        :back="{name: 'posts', params: {type}}"
     >
         <ContentPage>
             <b-skeleton-wrapper :loading="!loaded">
@@ -18,11 +18,11 @@
                 </template>
                 <template #default>
                     <div class="mb-2">
-                        <h1>{{ project.title }}</h1>
-                        <div><small>Uploaded {{ format(project.created_at) }}</small></div>
+                        <h1>{{ post.title }}</h1>
+                        <div><small>Uploaded {{ format(post.created_at) }}</small></div>
                     </div>
-                    <div v-html="project.content"></div>
-                    <div><small>Last updated {{ format(project.updated_at) }}</small></div>
+                    <div v-html="post.content"></div>
+                    <div><small>Last updated {{ format(post.updated_at) }}</small></div>
                 </template>
             </b-skeleton-wrapper>
         </ContentPage>
@@ -33,43 +33,50 @@
     import moment from 'moment';
 	import ContentPage from "../../layouts/page/ContentPage";
     import Page from "../../layouts/page/Page";
+    import config from "../../../config";
     export default {
-		name: "Project",
+		name: "Post",
         components: {Page, ContentPage},
+        data() {
+            return {
+                title: config.post[this.$route.params.type].title,
+                type: this.$route.params.type,
+            }
+        },
         computed: {
-		    project() {
-                return this.$store.state.projects?.find(p => p.id === parseInt(this.$route.params.id));
+		    post() {
+                return this.$store.state.posts?.find(p => p.id === parseInt(this.$route.params.id) && p.type === this.type);
             },
             auth() {
                 return this.$store.getters.auth;
             },
             image() {
-		        return this.project?.image;
+		        return this.post?.image;
             },
             actions() {
 		        if(this.auth) {
 		            return [
                         {
                             text: 'Edit',
-                            to: { name: 'project-edit' },
+                            to: { name: 'post-edit', params: {type: this.type} },
                         },
                         {
                             text: 'Delete',
-                            to: { name: 'project-delete' },
+                            to: { name: 'post-delete', params: {type: this.type} },
                         }
                     ]
                 }
 		        return [];
             },
             loaded() {
-		        return !!this.project;
+		        return !!this.post;
             }
         },
         watch: {
 		    '$store.getters.loaded'(val) {
 		        if(val) {
 		            if(!this.loaded) {
-		                this.$router.push({name: 'projects'});
+		                this.$router.push({name: 'posts', params: {type: this.type}});
                     }
                 }
             }

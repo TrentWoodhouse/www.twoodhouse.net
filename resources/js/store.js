@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
     state: {
         auth: localStorage.getItem('auth'),
         images: {},
-        projects: null,
+        posts: null,
 
         //Page objects
         image: null,
@@ -34,7 +34,7 @@ export const store = new Vuex.Store({
             });
         },
         loaded(state) {
-            return !!state.projects;
+            return !!state.posts;
         }
     },
     mutations: {
@@ -64,8 +64,8 @@ export const store = new Vuex.Store({
         setObject(state, {object, data}) {
             state[object] = data;
         },
-        addProject(state, project) {
-            state.projects.push(project);
+        addPost(state, post) {
+            state.posts.push(post);
         },
         saveImage(state, {path, callback}) {
             if(!state.images[path]) {
@@ -78,12 +78,12 @@ export const store = new Vuex.Store({
                 callback(path);
             }
         },
-        updateProject(state, project) {
-            let oldProject = state.projects.find(p => p.id === project.id);
-            Object.assign(oldProject, project);
+        updatePost(state, post) {
+            let oldPost = state.posts.find(p => p.id === post.id);
+            Object.assign(oldPost, post);
         },
-        removeProject(state, id) {
-            state.projects = state.projects.filter(p => p.id !== id);
+        removePost(state, id) {
+            state.posts = state.posts.filter(p => p.id !== id);
         }
     },
     actions: {
@@ -96,36 +96,37 @@ export const store = new Vuex.Store({
         logout(context) {
             context.commit('clearAuth');
         },
-        getProjects(context) {
-            return axios.get('/project')
+        getPosts(context) {
+            return axios.get('/post')
             .then(response => {
                 context.commit('setObject', {
-                    object: 'projects',
+                    object: 'posts',
                     data: response.data
                 });
                 return response;
             });
         },
-        createProject(context, data) {
-            return axios.post('/project', data, context.getters._config())
+        createPost(context, data) {
+            return axios.post('/post', data, context.getters._config())
                 .then(response => {
-                    context.commit('addProject', response.data);
+                    console.log(response.data);
+                    context.commit('addPost', response.data);
                     return response;
                 })
                 .catch(error => console.log(error.message));
         },
-        updateProject(context, {id, data}) {
-            return axios.put(`/project/${id}`, data, context.getters._config())
+        updatePost(context, {id, data}) {
+            return axios.put(`/post/${id}`, data, context.getters._config())
                 .then(response => {
-                    context.commit('updateProject', response.data);
+                    context.commit('updatePost', response.data);
                     return response;
                 })
                 .catch(error => console.log(error.message));
         },
-        deleteProject(context, id) {
-            return axios.delete(`/project/${id}`, context.getters._config())
+        deletePost(context, id) {
+            return axios.delete(`/post/${id}`, context.getters._config())
                 .then(response => {
-                    context.commit('removeProject', id);
+                    context.commit('removePost', id);
                     return response;
                 })
                 .catch(error => console.log(error.message));

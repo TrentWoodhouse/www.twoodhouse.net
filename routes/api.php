@@ -22,10 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('project', 'ProjectController')->only([
+Route::apiResource('post', 'PostController')->only([
     'index', 'show'
 ]);
-Route::middleware('auth:sanctum')->apiResource('project', 'ProjectController')->only([
+Route::middleware('auth:sanctum')->apiResource('post', 'PostController')->only([
     'store', 'update', 'destroy'
 ]);
 
