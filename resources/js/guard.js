@@ -27,6 +27,9 @@ export function verify(route, guard) {
         }
     }
     else if(typeof(guard) === 'object') {
+        if(!store.getters.loaded) {
+            return true;
+        }
         switch(guard.type) {
             case 'exists':
                 return !!store.state[guard.options.object]?.find(o => o.id === route.params.id);

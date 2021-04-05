@@ -33,6 +33,9 @@ export const store = new Vuex.Store({
                 }
             });
         },
+        loaded(state) {
+            return !!state.projects;
+        }
     },
     mutations: {
         setAuth(state, auth) {
