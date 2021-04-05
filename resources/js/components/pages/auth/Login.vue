@@ -5,7 +5,7 @@
         :back="{name: 'home'}"
     >
         <p>Please sign in.</p>
-        <LoginForm @onSubmit="onSubmit" @onCancel="onCancel"/>
+        <LoginForm @onSubmit="onSubmit" @onCancel="onCancel" :error="error"/>
     </Page>
 </template>
 
@@ -15,6 +15,11 @@
 	export default {
 		name: "Login",
         components: {Page, LoginForm},
+        data() {
+		    return {
+		        error: null,
+            }
+        },
         methods: {
 		    onSubmit(data) {
                 this.$store.dispatch('login', data)
