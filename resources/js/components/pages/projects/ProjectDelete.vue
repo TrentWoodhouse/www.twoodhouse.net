@@ -19,7 +19,7 @@
         components: {DeleteForm, Page},
         computed: {
             project() {
-                return this.$store.state.projects?.find(p => p.id == this.$route.params.id);
+                return this.$store.state.projects?.find(p => p.id === parseInt(this.$route.params.id));
             },
             auth() {
                 return this.$store.getters.auth;

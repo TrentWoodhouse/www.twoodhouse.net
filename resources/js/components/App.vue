@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="loaded" class="position-relative h-100 overflow-hidden">
+        <div class="position-relative h-100 overflow-hidden">
             <SideImage/>
             <div class="front p-4 h-100">
                 <div class="d-flex flex-column h-100">
@@ -38,11 +38,6 @@
                 </div>
             </div>
         </div>
-        <div v-else class="row align-items-center w-100 h-100">
-            <div class="col-12 text-center">
-                <b-spinner style="width: 3rem; height: 3rem;" type="grow" variant="light"/>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -54,11 +49,6 @@
     export default {
         name: "App",
         components: {Link, Auth, Alert, SideImage},
-        data() {
-            return {
-                loaded: true,
-            }
-        },
         created() {
             this.$store.dispatch('getProjects');
         },
@@ -71,7 +61,7 @@
             },
             actions() {
                 return this.$store.state.actions;
-            }
+            },
         }
     }
 </script>

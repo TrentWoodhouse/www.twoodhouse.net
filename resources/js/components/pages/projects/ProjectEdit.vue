@@ -17,7 +17,7 @@
         components: {Page, ProjectForm},
         computed: {
             project() {
-                return this.$store.state.projects?.find(p => p.id === this.$route.params.id);
+                return this.$store.state.projects?.find(p => p.id === parseInt(this.$route.params.id));
             },
             image() {
                 return this.project?.image;
