@@ -13,6 +13,7 @@
                         :class="{'active': isActive[button.type](button.params)}"
                         @click="commands[button.type](button.params)"
                         type="button"
+                        tabindex="-1"
                     >
                         <b-icon :icon="button.icon" :scale="1.5"/>
                     </b-link>
@@ -23,6 +24,7 @@
                             :class="{'active': isActive[button.type](button.params)}"
                             @click="href = getMarkAttrs('link').href"
                             type="button"
+                            tabindex="-1"
                         >
                             <b-icon :icon="button.icon" :scale="1.5"/>
                         </b-link>

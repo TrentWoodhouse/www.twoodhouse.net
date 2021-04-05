@@ -78,18 +78,18 @@
     import {maxLength, required} from "vuelidate/lib/validators";
     import CKEditor from "../layouts/CKEditor";
     export default {
-		name: "ProjectForm",
+		name: "PostForm",
         components: {CKEditor, Link},
         props: {
-		    project: Object,
+		    post: Object,
         },
         data() {
 		    return {
                 form: {
+                    type: this.$route.params.type,
                     title: '',
                     description: '',
                     content: '',
-                    image: '',
                 },
                 imageFile: null,
                 imageData: null,
@@ -98,10 +98,10 @@
             }
         },
         created() {
-            if(this.project) {
-                this.form.title = this.project.title;
-                this.form.description = this.project.description;
-                this.form.content = this.project.content;
+            if(this.post) {
+                this.form.title = this.post.title;
+                this.form.description = this.post.description;
+                this.form.content = this.post.content;
             }
         },
         methods: {

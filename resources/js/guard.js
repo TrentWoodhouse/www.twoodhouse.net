@@ -1,4 +1,5 @@
 import {store} from './store';
+import config from "./config";
 
 const guards = [
     {
@@ -11,9 +12,13 @@ const guards = [
     },
     {
         type: 'exists',
-        redirect(options) {
-            return options.redirect || {name: 'home'};
+        redirect(route) {
+            return {name: 'posts', params: {type: route.params.type}};
         }
+    },
+    {
+        type: 'path-exists',
+        redirect: {name: 'home'},
     }
 ]
 
@@ -24,27 +29,23 @@ export function verify(route, guard) {
                 return !!store.getters.auth;
             case 'guest':
                 return !store.getters.auth;
-        }
-    }
-    else if(typeof(guard) === 'object') {
-        if(!store.getters.loaded) {
-            return true;
-        }
-        switch(guard.type) {
             case 'exists':
-                return !!store.state[guard.options.object]?.find(o => o.id === route.params.id);
+                if(!store.getters.loaded) return true;
+                return !!store.state.posts?.find(p => p.id === parseInt(route.params.id) && p.type === route.params.type);
+            case 'path-exists':
+                return !!config.post[route.params.type];
         }
     }
-
     return false;
 }
 
-export function getRedirect(guard) {
-    if(typeof(guard) === 'string') {
-        return guards.find(g => g.type === guard)?.redirect;
+export function getRedirect(route, guard) {
+    let g = guards.find(g => g.type === guard);
+    if(typeof g?.redirect === 'object') {
+        return g.redirect;
     }
-    else if(typeof(guard) === 'object') {
-        return guards.find(g => g.type === guard.type)?.redirect(guard.options);
+    if(typeof g?.redirect === 'function') {
+        return g.redirect(route);
     }
     return null;
 }
