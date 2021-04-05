@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
         App\User::create([
             'first_name' => 'Trent',
             'last_name' => 'Woodhouse',
-            'email' => 'trentrwoodhouse@gmail.com',
+            'email' => 'test@example.com',
             'email_verified_at' => now(),
-            'password' => '$2y$10$IGFYVTqIE9Nb.ahYa.WJKuvuGo3oomi1yi8YZ/DtC0uUNE/13C/sa', //asdfasdf
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password
         ]);
     }
 }

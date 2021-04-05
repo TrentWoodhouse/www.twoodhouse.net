@@ -33,7 +33,6 @@
                 </b-form-invalid-feedback>
             </div>
         </div>
-
         <Link class="px-2" @click.native="onSubmit" dark>Login</Link>
         <Link class="px-2" @click.native="$emit('onCancel')" dark>Cancel</Link>
     </b-form>
@@ -45,6 +44,9 @@
     export default {
 		name: "LoginForm",
         components: {Link},
+        props: {
+		    error: String,
+        },
         data() {
             return {
                 form: {
@@ -52,14 +54,22 @@
                     password: '',
                 },
                 submitted: false,
-                error: '',
+                timeout: null,
+                pause: false,
             }
         },
         methods: {
             onSubmit() {
                 this.submitted = true;
                 if(!this.$v.$invalid) {
-                    this.$emit('onSubmit', this.form);
+                    if(!this.pause) {
+                        this.$emit('onSubmit', this.form);
+                    }
+                    this.pause = true;
+                    clearTimeout(this.timeout);
+                    this.timeout = setTimeout(() => {
+                        this.pause = false;
+                    }, 100);
                 }
             },
         },
