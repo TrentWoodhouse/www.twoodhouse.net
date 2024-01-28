@@ -1,6 +1,6 @@
 <template>
     <Page
-        title="Trent Woodhouse - Coding & Design"
+        title="Trent Woodhouse - Web Development"
         :image="publicImage('home.png')"
     >
         <Nav :nav-items="navItems"/>
