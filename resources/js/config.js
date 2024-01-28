@@ -1,14 +1,14 @@
 export default {
     post: {
         project: {
-            title: 'Projects',
-            titleSingular: 'Project',
+            title: 'Projects Portfolio',
+            titleSingular: 'Project Post',
             image: 'projects.png',
         },
-        blog: {
-            title: 'Blog',
-            titleSingular: 'Blog',
-            image: null,
+        career: {
+            title: 'Career Journey',
+            titleSingular: 'Career Post',
+            image: 'roles.jpg',
         }
     }
 }

@@ -10,6 +10,7 @@
 <script>
     import Nav from "../layouts/Nav";
     import Page from "../layouts/page/Page";
+    import config from "../../config";
     export default {
 		name: "Home",
         components: {Page, Nav},
@@ -17,24 +18,19 @@
 		    return {
                 navItems: [
                     {
-                        name: 'About',
+                        name: 'About Me',
                         icon: 'person-fill',
                         route: {name: 'about'},
                     },
                     {
-                        name: 'Projects',
+                        name: config.post.project.title,
                         icon: 'tools',
                         route: {name: 'posts', params: {type: 'project'}},
                     },
                     {
-                        name: 'Blog',
-                        icon: 'book-fill',
-                        route: {name: 'posts', params: {type: 'blog'}},
-                        badge: {
-                            text: 'Coming Soon',
-                            variant: 'danger',
-                        },
-                        disabled: true,
+                        name: config.post.career.title,
+                        icon: 'briefcase-fill',
+                        route: {name: 'posts', params: {type: 'career'}},
                     },
                     {
                         name: 'Contact Me',
