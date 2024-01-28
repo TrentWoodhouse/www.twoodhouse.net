@@ -5,11 +5,12 @@
         :back="{name: 'home'}"
     >
         <TextPage>
-            <p>Hi All,</p>
+            <p>Hi there!</p>
             <p>
-                I'm a full time student and part time freelance web developer, based in Ames, Iowa. Primarily
-                working with Laravel and Vue, I aim to build robust websites that have a sleek design and
-                function well.
+                I'm Trent, a software engineer based in Madison, Wisconsin, with four years of web development experience. 
+                I aim to to craft clean and elegantly designed products and features that not only meet user needs but 
+                are delightful and satisfying to use. With a keen eye for detail and a dedication to quality, I strive to make 
+                every project I work on an enjoyable experience.
             </p>
         </TextPage>
     </Page>

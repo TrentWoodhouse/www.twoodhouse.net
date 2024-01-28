@@ -1,8 +1,13 @@
 <template>
 	<div v-if="src">
-        <div class="d-none d-md-inline align-right h-100">
+        <div class="d-none d-md-none d-xl-inline align-right h-100">
             <transition name="fade">
                 <img v-if="src" :src="src" :key="src" class="img-regular h-100">
+            </transition>
+        </div>
+        <div class="d-none d-md-inline d-xl-none align-right h-100">
+            <transition name="fade">
+                <img v-if="src" :src="src" :key="src" class="img-regular-darkened h-100">
             </transition>
         </div>
         <div class="d-inline d-md-none h-100">
@@ -49,6 +54,16 @@
         mask-image: url("/images/mask.png");
         position:absolute;
         right: 0;
+    }
+
+    .img-regular-darkened {
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-image: url("/images/mask.png");
+        mask-image: url("/images/mask.png");
+        position:absolute;
+        right: 0;
+        opacity: 0.7;
     }
 
     .img-responsive {
