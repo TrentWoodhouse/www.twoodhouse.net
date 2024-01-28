@@ -8,7 +8,7 @@ export default {
         career: {
             title: 'Career Journey',
             titleSingular: 'Career Post',
-            image: 'roles.jpg',
+            image: 'careers.jpg',
         }
     }
 }
