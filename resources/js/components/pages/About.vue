@@ -1,6 +1,6 @@
 <template>
     <Page
-        title="About"
+        title="About Me"
         :image="publicImage('about.png')"
         :back="{name: 'home'}"
     >
