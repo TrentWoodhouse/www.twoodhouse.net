@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-100 scrollable">
         <div v-for="item of navItems" class="no-select mb-3">
             <Link :to="item.route" :disabled="item.disabled">
                 <h1 class="d-inline">
