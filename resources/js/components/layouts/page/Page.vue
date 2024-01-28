@@ -4,7 +4,7 @@
             <div class="flex-column">
                 <Link v-if="back" :to="back" dark>
                     <b-icon icon="arrow-left-square-fill" class="d-none d-md-inline-block mr-3" font-scale="2"/>
-                    <b-icon icon="arrow-left-square-fill" class="d-inline-block d-md-none mr-3" font-scale="1"/>
+                    <b-icon icon="arrow-left-square-fill" class="d-inline-block d-md-none mr-1" font-scale="2"/>
                 </Link>
             </div>
             <div class="flex-fill">
